@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FishingMiniGame : MonoBehaviour
 {
+    public GameObject fishingGame;
+
     [SerializeField] Transform topPivot;
     [SerializeField] Transform bottomPivot;
 
@@ -114,6 +116,7 @@ public class FishingMiniGame : MonoBehaviour
     private void Lose()
     {
         pause = true;
+        fishingGame.SetActive(false);
         Debug.Log("YOU LOSE! NO FISH FOR YOU!!!");
     }
 
@@ -121,6 +124,7 @@ public class FishingMiniGame : MonoBehaviour
     private void Win()
     {
         pause = true;
+        fishingGame.SetActive(false);
         Debug.Log("YOU WIN! FISH CAUGHT!");
     }
 
