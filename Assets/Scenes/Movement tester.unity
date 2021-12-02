@@ -2254,6 +2254,7 @@ MonoBehaviour:
   hookSpriteRenderer: {fileID: 304289812}
   progressBarContainer: {fileID: 98786362}
   failTimer: 10
+  caughtFish: 0
 --- !u!4 &1265315393
 Transform:
   m_ObjectHideFlags: 0
@@ -3441,7 +3442,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageProgressUp: {fileID: 594059330}
-  fishingGame: {fileID: 0}
+  fishingGame: {fileID: 1265315391}
+  castBarVisible: {fileID: 594059328}
+  miniGame: {fileID: 1265315392}
 --- !u!114 &1800168933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3449,7 +3452,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800168928}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7606b29f3d01465882d278805e1a411, type: 3}
   m_Name: 

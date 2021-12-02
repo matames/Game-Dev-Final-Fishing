@@ -42,8 +42,8 @@ public class FishingMiniGame : MonoBehaviour
     bool pause = false;
 
     [SerializeField] float failTimer = 10f;
-   
 
+    public int caughtFish = 0;      // win/lose check; 0 = not fishing anything
 
     // Start is called before the first frame update
 
@@ -115,16 +115,18 @@ public class FishingMiniGame : MonoBehaviour
 
     private void Lose()
     {
+        caughtFish = 2;     // 2 = lose
         pause = true;
-        fishingGame.SetActive(false);
+        //fishingGame.SetActive(false);
         Debug.Log("YOU LOSE! NO FISH FOR YOU!!!");
     }
 
 
     private void Win()
     {
+        caughtFish = 1;     // 1 = win
         pause = true;
-        fishingGame.SetActive(false);
+        //fishingGame.SetActive(false);
         Debug.Log("YOU WIN! FISH CAUGHT!");
     }
 
