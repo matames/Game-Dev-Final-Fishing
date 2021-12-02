@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3c2b5d4f849423482b40c5c573ab86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishingGame: {fileID: 0}
+  fishingGame: {fileID: 1265315391}
   topPivot: {fileID: 1979012613}
   bottomPivot: {fileID: 116906960}
   fish: {fileID: 1183811488}
@@ -1366,6 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishingGame: {fileID: 1265315391}
+  castingBar: {fileID: 594059328}
 --- !u!1 &1961016067
 GameObject:
   m_ObjectHideFlags: 0

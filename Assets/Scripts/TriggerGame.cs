@@ -8,6 +8,7 @@ public class TriggerGame : MonoBehaviour
 {
 
     public GameObject fishingGame;
+    public GameObject castingBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,15 @@ public class TriggerGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (fishingGame.activeSelf)
+        {
+            castingBar.SetActive(false);
+        }
+
+        if (fishingGame.activeSelf == false)
+        {
+            castingBar.SetActive(true);
+        }
 
         if (Input.GetKey(KeyCode.X))
         {
