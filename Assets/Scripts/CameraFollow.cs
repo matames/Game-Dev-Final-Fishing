@@ -57,6 +57,6 @@ public class CameraFollow : MonoBehaviour
         //player position = smooth pos
         gameObject.transform.position = smoothPos;
 
-        Debug.Log(gameObject.transform.position);
+        //Debug.Log(gameObject.transform.position);
     }
 }
