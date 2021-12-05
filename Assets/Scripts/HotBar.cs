@@ -5,31 +5,37 @@ using UnityEngine.UI;
 
 public class HotBar : MonoBehaviour
 
-
-    
 {
     public Sprite shittyfish;
-    public Inventory Inventory;
+    //public Inventory Inventory;
     // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-
-        Inventory.ItemAdded += InventoryScript_ItemAdded;
+        if (FishingMiniGame.win == true)
+        {
+            Debug.Log("ITS GOING");
+            InventoryScript_ItemAdded();
+            FishingMiniGame.win = false;
+            Debug.Log(FishingMiniGame.win);
+        }
     }
 
-    private void InventoryScript_ItemAdded(object sender, InventoryEventArgs e)
+
+    private void InventoryScript_ItemAdded()
     {
-        Transform inventoryPanel = transform.Find("Inventory");
-        foreach(Transform slot in inventoryPanel)
+        Transform inventoryPanel = transform.Find("Panel");
+        foreach (Transform slot in inventoryPanel)
         {
             Image image = slot.GetChild(0).GetChild(0).GetComponent<Image>();
 
             if (!image.enabled)
             {
+                
                 image.enabled = true;
                 image.sprite = shittyfish;
 
                 break;
-            } 
+            }
         }
     }
+}
