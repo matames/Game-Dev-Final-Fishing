@@ -40,6 +40,7 @@ public class FishingMiniGame : MonoBehaviour
 
 
     bool pause = false;
+    public static bool win = false;
 
     [SerializeField] float failTimer = 10f;
 
@@ -113,8 +114,10 @@ public class FishingMiniGame : MonoBehaviour
     }
 
 
-    private void Lose()
+    public void Lose()
     {
+        win = false;
+
         caughtFish = 2;     // 2 = lose
         pause = true;
         //fishingGame.SetActive(false);
@@ -122,8 +125,10 @@ public class FishingMiniGame : MonoBehaviour
     }
 
 
-    private void Win()
+    public void Win()
     {
+        win = true;
+
         caughtFish = 1;     // 1 = win
         pause = true;
         //fishingGame.SetActive(false);
