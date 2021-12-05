@@ -129,8 +129,12 @@ public class FishingMiniGame : MonoBehaviour
     {
         win = true;
 
-        caughtFish = 1;     // 1 = win
-        pause = true;
+        caughtFish = 1;
+
+        hookProgress = 0;
+
+        // 1 = win
+        //pause = true;
         //fishingGame.SetActive(false);
         Debug.Log("YOU WIN! FISH CAUGHT!");
     }
