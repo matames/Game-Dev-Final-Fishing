@@ -23,6 +23,13 @@ public class CastingBar : MonoBehaviour
 
     public FishingMiniGame miniGame;
 
+    public AudioSource mySource;
+    public AudioClip castBarSFX;
+    public AudioClip clinkSFX;
+    public AudioClip lineCastWooshSplooshSFX;
+    public AudioClip biteAlertSFX;
+    public AudioClip hitAlertSFX;
+
     void Start()
     {
         fishingGame.SetActive(false);
@@ -36,8 +43,9 @@ public class CastingBar : MonoBehaviour
             reeling = true;
             fishingGame.SetActive(true);
             StopAllCoroutines(); //Stops the LineBreak timer
+            mySource.PlayOneShot(hitAlertSFX);
         }
-        
+
         if (miniGame.caughtFish > 0)
         {
             reeling = false;
@@ -51,10 +59,12 @@ public class CastingBar : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !lineInWater && !reeling)
         {
             StartProgress();
+            mySource.PlayOneShot(castBarSFX);
         }
         else if (Input.GetMouseButtonUp(0) && !lineInWater && !reeling)
         {
             EndProgress();
+            mySource.PlayOneShot(clinkSFX);
         }
 
         if (isCasting && !lineInWater && !reeling)
@@ -128,6 +138,7 @@ public class CastingBar : MonoBehaviour
     {
         lineInWater = true;
         StartCoroutine(WaitForBite(5));
+        mySource.PlayOneShot(lineCastWooshSplooshSFX);
     }
 
     private IEnumerator WaitForBite(float maxWaitTime)
@@ -138,6 +149,9 @@ public class CastingBar : MonoBehaviour
         //thoughtBubbles.GetComponent<Animator>().SetTrigger("Alert"); //Show the alert thoughtbubble
 
         bite = true;
+
+        mySource.PlayOneShot(biteAlertSFX);
+
         StartCoroutine(LineBreak(2)); // if no clickings in 2 seconds break the line
     }
 

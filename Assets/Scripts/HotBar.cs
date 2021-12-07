@@ -9,12 +9,17 @@ public class HotBar : MonoBehaviour
     public Sprite shittyfish;
     //public Inventory Inventory;
     // Start is called before the first frame update
+
+    public AudioClip fishAddSFX;
+    public AudioSource fishAddSource;
+
     private void Update()
     {
         if (FishingMiniGame.win == true)
         {
             Debug.Log("ITS GOING");
             InventoryScript_ItemAdded();
+            fishAddSource.PlayOneShot(fishAddSFX);
             FishingMiniGame.win = false;
             Debug.Log(FishingMiniGame.win);
         }
