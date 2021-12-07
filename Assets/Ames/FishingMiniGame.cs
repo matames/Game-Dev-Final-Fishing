@@ -46,6 +46,16 @@ public class FishingMiniGame : MonoBehaviour
 
     public int caughtFish = 0;      // win/lose check; 0 = not fishing anything
 
+    public AudioSource lineTugSource;
+
+    public AudioSource mySource;
+    public AudioClip playerOutOfBoundsSFX;
+    public AudioClip fishCaughtSFX;
+    //public AudioClip fishPulledOutSFX; --> couldn't put this audio in since there isn't
+    //a pause between when the fish has been caught and when it's stored in the inventory
+
+    private bool hasPlayed = false;
+
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -69,7 +79,6 @@ public class FishingMiniGame : MonoBehaviour
 
     private void Update()
     {
-
         if (pause) { return; }
         Fish();
         Hook();
@@ -89,13 +98,21 @@ public class FishingMiniGame : MonoBehaviour
         if (min < fishPosition && fishPosition < max)
         {
             hookProgress += hookPower * Time.deltaTime;
-            
+            hasPlayed = false;
+
         }
         else
         {
             hookProgress -= hookProgressDegradationPower * Time.deltaTime;
             failTimer -= Time.deltaTime;
-            if(failTimer < 0f)
+
+            if (!hasPlayed)
+            {
+                mySource.PlayOneShot(playerOutOfBoundsSFX);
+                hasPlayed = true;
+            }
+
+            if (failTimer < 0f)
             {
                 Lose();
             }
@@ -107,6 +124,7 @@ public class FishingMiniGame : MonoBehaviour
 
         if (hookProgress >= 1f)
         {
+            mySource.PlayOneShot(fishCaughtSFX);
             Win();
         }
 
@@ -122,6 +140,8 @@ public class FishingMiniGame : MonoBehaviour
         pause = true;
         //fishingGame.SetActive(false);
         Debug.Log("YOU LOSE! NO FISH FOR YOU!!!");
+
+        lineTugSource.Stop();
     }
 
 
@@ -137,6 +157,8 @@ public class FishingMiniGame : MonoBehaviour
         //pause = true;
         //fishingGame.SetActive(false);
         Debug.Log("YOU WIN! FISH CAUGHT!");
+
+        lineTugSource.Stop();
     }
 
 
@@ -145,18 +167,19 @@ public class FishingMiniGame : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             hookPullVelocity += hookPullPower * Time.deltaTime;
+            lineTugSource.Play();
         }
 
         hookPullVelocity -= hookGravityPower * Time.deltaTime;
 
         hookPosition += hookPullVelocity;
 
-        if(hookPosition - hookSize/2 < 0f && hookPullVelocity < 0f)
+        if (hookPosition - hookSize/2 < 0f && hookPullVelocity < 0f)
         {
             hookPullVelocity = 0f;
         }
 
-        if(hookPosition + hookSize/2 > 1f && hookPullVelocity > 0f)
+        if (hookPosition + hookSize/2 > 1f && hookPullVelocity > 0f)
         {
             hookPullVelocity = 0f;
         }
